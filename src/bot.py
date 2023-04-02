@@ -14,9 +14,12 @@ import afk_func
 import bestbuy_func
 import value_func
 import next_function
+from dotenv import load_dotenv
+
+load_dotenv()
   
 bot = commands.Bot(command_prefix=";")
-token = 'MTAzNzUzNDg5OTIzNTcyOTQzOQ.Gq57aK.vlXTdDj-sdYiq7smseFgDp6NxUXu9GW-Sml3w0'
+token = os.getenv("TOKEN")
 bot.remove_command('help')
 
 @bot.event
