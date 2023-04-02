@@ -1,10 +1,6 @@
 from datetime import datetime
 import pandas as pd
 
-
-
-
-
 def current(character):
     sheet_id = "1RzqqheHKMmwCbEM_gSTUep_S4hFu4ILMz__o0tjYPF0"
     sheet_name = "FEBRUARY-2023"
