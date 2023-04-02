@@ -1,10 +1,6 @@
-import numpy as np
+
 import pandas as pd
 import current_func
-import discord
-import dataframe_image as dfi
-import six
-import matplotlib.pyplot as plt
 
 
 
@@ -28,7 +24,6 @@ def next(rounds, character):
     growth = ''
     turn = ''
     num = ''
-    bord = '║'
     table = '```ansi\n╔══════════╦══════════╦══════════╗\n║' + ('Turn #').center(10) + '║' + ('Price').center(10) + '║' + ('Growth').center(10) + '║\n╠══════════╬══════════╬══════════╣\n'
     for r in all_rounds.index[1:]: 
         

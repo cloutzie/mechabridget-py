@@ -1,10 +1,8 @@
-
 import discord
 import os
 import random
 from discord.ext import commands
 import lsr_func
-import bolband_func
 import sma_func
 import current_func
 import ema_func

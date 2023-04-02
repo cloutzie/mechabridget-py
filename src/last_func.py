@@ -2,9 +2,6 @@ import numpy as np
 import pandas as pd
 import current_func
 import discord
-import dataframe_image as dfi
-import six
-import matplotlib.pyplot as plt
 
 
 
