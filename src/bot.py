@@ -38,16 +38,6 @@ async def lsr(ctx, character):
     await ctx.send(file=discord.File((lsr_func.lsr(character.lower()))))
     os.remove(character+'.png')
 
-###################
-
-# BOLLINGER BAND (N/A)
-
-@bot.command()
-async def band(ctx, character):
-    await ctx.send(file=discord.File((bolband_func.band(character.lower()))))
-    os.remove(character+'.png')
-
-###################
 
 # SIMPLE MOVING AVERAGE
 
