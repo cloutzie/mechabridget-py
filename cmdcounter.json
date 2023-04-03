@@ -10,5 +10,14 @@
     },
     ";suggest": {
         "runs": 0
+    },
+    ";lsr": {
+        "runs": 0
+    },
+    ";sma": {
+        "runs": 0
+    },
+    ";ema": {
+        "runs": 0
     }
 }

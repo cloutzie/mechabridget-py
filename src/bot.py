@@ -16,6 +16,9 @@ import get_round
 import last_cmd
 import next_cmd
 import suggestion_cmd
+import lsr_graph
+import sma_graph
+import ema_graph
 
 load_dotenv()
   
@@ -97,75 +100,54 @@ async def suggest(ctx):
 
 
 
+# Least Squared Regression Graph | ;lsr
+@bot.command()
+async def lsr(ctx, character):
+
+    # Counter for ;lsr
+    counter.addr(';lsr')
+
+    await ctx.send(file=discord.File((lsr_graph.lsr(character.lower()))))
+    os.remove(character+'.png')
 
 
 
+# Simple Moving Average Graph | ;sma
+@bot.command()
+async def sma(ctx, character):
+
+    # Counter for ;sma 
+    counter.addr(';sma')
+
+    await ctx.send(file=discord.File((sma_graph.sma(character.lower()))))
+    os.remove(character+'.png')
 
 
 
+# Exponential Moving Average Graph | ;ema
+@bot.command()
+async def ema(ctx, character):
 
+    # Counter for ;ema
+    counter.addr(';ema')
+
+    await ctx.send(file=discord.File((ema_graph.ema(character.lower()))))
+    os.remove(character+'.png')
+
+
+
+@bot.command()
+async def statistics(ctx):
+    if ctx.author.id == 328328717057392641:
+        await ctx.send(
+            counter.display()
+        )
+    else:
+        await ctx.send('No Thanks!')
 
 
 '''###################
 
-# LEAST SQUARED REGRESSION
-
-@bot.command()
-async def lsr(ctx, character):
-    await ctx.send(file=discord.File((lsr_func.lsr(character.lower()))))
-    os.remove(character+'.png')
-
-
-# SIMPLE MOVING AVERAGE
-
-@bot.command()
-async def sma(ctx, character):
-    await ctx.send(file=discord.File((sma_func.sma(character.lower()))))
-    os.remove(character+'.png')
-
-###################
-
-# EXPONENTIAL MOVING AVERAGE
-
-@bot.command()
-async def ema(ctx, character):
-    await ctx.send(file=discord.File((ema_func.ema(character.lower()))))
-    os.remove(character+'.png')
-
-###################
-
-# CURRENT PRICE OR ROUND #
-
-@bot.command(aliases=['r', 'rnd'])
-async def current(ctx):
-    await ctx.send('> Current Round is ' + str(get_round.round()))
-
-
-###################
-
-# LAST 10 (N/A)
-
-@bot.command()
-async def last(ctx, rounds, character):
-    await ctx.send('> Current Round is ' + str(get_round.current('round')))
-    await ctx.send(last_func.last(rounds, character.lower()))
-
-
-
-@bot.command()
-async def next(ctx, rounds, character):
-    await ctx.send('> Current Round is ' + str(get_round.current('round')))
-    await ctx.send(next_function.next(rounds, character.lower()))
-###################
-
-# RANDOM MATH
-
-@bot.command()
-async def math(ctx, function, character, rounds):
-    await ctx.send('> Current Round is ' + str(get_round.current('round')))
-    await ctx.send(math_func.math(function, character.lower(), rounds))
-
-###################
 
 # FIND NEXT TIP
 

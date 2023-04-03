@@ -1,34 +1,23 @@
-import numpy as np
-import pandas as pd
+
 import matplotlib.pyplot as plt
-import get_round
 
+import get_sheet as gs
 
-
-
-
+# Backend for simple moving average
 def sma(character):
-    sheet_id = "1RzqqheHKMmwCbEM_gSTUep_S4hFu4ILMz__o0tjYPF0"
-    sheet_name = "FEBRUARY-2023"
-    url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
-    col_names = ["turns", "celine", "chocolat", "fergus", "lenny", "lednas"]
-    col_nums = [0,1,3,5,7,9]
 
-    df = pd.read_csv(url, usecols= col_nums, names = col_names, skiprows=1)
-    turns = range(1,df.count()['turns']+1)
-    df['turns'] = turns
-    df = df.dropna()[df['turns'] <= get_round.current('round')]
-    df
+    # Get sheet data
+    df = gs.sheet()
 
-
-    def get_sma(prices, rate):
-        return prices.rolling(rate).mean()
-
+    # Get price list
     price = df[character] 
 
+    # Get SMA
+    def get_sma(prices, rate):
+        return prices.rolling(rate).mean()
     sma = get_sma(price, 20) # Get 20 day SMA
 
-    # Axes
+    # Set up graph
     plt.cla()
     plt.clf()
     ax = plt.axes()
@@ -42,8 +31,7 @@ def sma(character):
     ax.spines['top'].set_color('white')
     ax.spines['right'].set_color('white')
 
-    # Plot the data
-    
+    # Plot the graph
     plt.title(str(character.replace(character[0], character[0].upper())) + ' SMA', color='white')
     plt.xlabel('Turns')
     plt.ylabel('Price')
@@ -51,7 +39,6 @@ def sma(character):
     plt.plot(sma, label='20 Turn SMA')
     plt.legend()
 
-    
     plt.savefig(character+'.png', facecolor='#36393f')
     return (character+'.png')
 

@@ -1,18 +1,14 @@
-import pandas as pd
+
 import matplotlib.pyplot as plt
-import numpy as np
 from sklearn.linear_model import LinearRegression
-import get_round
-import sheet_hook as sh
+
+import get_sheet as gs
 
 
-
-
-
-
+# Backend for Least Squared Regression Graph
 def lsr(character):
     
-    df = sh.sheet_dropna()
+    df = gs.sheet()
     
     price = df[character]
     turns = df['turns']
