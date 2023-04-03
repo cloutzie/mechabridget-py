@@ -1,2 +1,10 @@
 # dotenv variable file
 .env
+
+# venv
+/venv
+
+# secret counter
+cmdcounter.json
+
+

@@ -34,6 +34,9 @@ def prcheck(hour):
 
 # Frontend for ;suggest
 def check_output(hour):
+    # Get current round
+    cr = gr.round()
+
     flag, growth = prcheck(hour)
     match flag:
 
@@ -49,7 +52,7 @@ def check_output(hour):
         
         case _:
             return(
-                f"> {flag.capitalize()} will have the highest growth of {growth}% in {hour} rounds."
+                f"> {flag.capitalize()} will have the highest growth of {growth}% by round {hour+cr}"
             )
 
 

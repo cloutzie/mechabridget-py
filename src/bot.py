@@ -21,10 +21,14 @@ import last_cmd
 import next_cmd
 import suggestion_cmd
 import ema_graph
+import resetbot
 
 load_dotenv()
   
 # Bot variables
+help_command = commands.DefaultHelpCommand(
+    no_category = 'Commands'
+)
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix=";", intents=intents)
 token = os.getenv("TOKEN")
@@ -34,6 +38,18 @@ token = os.getenv("TOKEN")
 async def on_ready():
     await bot.change_presence(activity=discord.Game(name=";help"))
     print(f"Logged in as a bot {bot.user.name}")
+
+# Reset Bot
+@bot.command(pass_context=True, description="Provide this command with a UNIX Timestamp and the proper sheet name when a new event starts. Admins only")
+@commands.has_permissions(administrator=True)
+async def resetbot(ctx, unix_timestamp, sheet_name):
+    resetbot.resetrr(unix_timestamp, sheet_name)
+    await ctx.send(
+        f"> Event start has been set to <t:{unix_timestamp}>"
+    )
+    await ctx.send(
+        f"> Sheet has been set to {sheet_name}>"
+    )
 
 
 
@@ -75,7 +91,7 @@ async def tips(ctx, character):
 
 
 # Value of characters | ;value
-@bot.command(aliases=['val', 'v'], description="Table of the most 'valuable' characters based on current prices. Based on STD Deviation from the mean.")
+@bot.command(aliases=['val', 'v'], description="Table of the most 'valuable' stonk based on current prices. Based on STD Deviation from the mean.")
 async def value(ctx):
 
     # Counter for ;value
@@ -117,7 +133,7 @@ async def check(ctx, hours):
 
 
 # Price Future Table | ;next <number of rounds> <character>
-@bot.command(aliases=['n'], description="Table of next N rounds for a given character")
+@bot.command(aliases=['n'], description="Table of next N rounds for a given stonk")
 async def next(ctx, rounds, char):
 
     # Counter for ;next
@@ -140,7 +156,7 @@ async def next(ctx, rounds, char):
 
 
 # Price History Table | ;last <number of rounds> <character>
-@bot.command(aliases=['l'], description="Table of last N rounds for a given character")
+@bot.command(aliases=['l'], description="Table of last N rounds for a given stonk")
 async def last(ctx, rounds, char):
 
     # Counter for ;last
@@ -186,7 +202,7 @@ async def bestbuy(ctx):
 
 
 # Exponential Moving Average Graph | ;ema
-@bot.command(description="Graph of the Exponential Moving Average of a given character")
+@bot.command(description="Graph of the Exponential Moving Average of a given stonk")
 async def ema(ctx, character):
 
     # Counter for ;ema
