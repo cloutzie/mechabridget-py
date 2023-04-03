@@ -1,23 +1,26 @@
 {
     ";round": {
-        "runs": 0
+        "runs": 15
+    },
+    ";tips": {
+        "runs": 18
+    },
+    ";value": {
+        "runs": 20
+    },
+    ";check": {
+        "runs": 23
     },
     ";next": {
-        "runs": 0
+        "runs": 7
     },
     ";last": {
-        "runs": 0
+        "runs": 3
     },
     ";suggest": {
-        "runs": 0
-    },
-    ";lsr": {
-        "runs": 0
-    },
-    ";sma": {
-        "runs": 0
+        "runs": 13
     },
     ";ema": {
-        "runs": 0
+        "runs": 2
     }
 }

@@ -1,33 +1,20 @@
-import numpy as np
-import pandas as pd
-import get_round
-import discord
-import tips_func
+
+import get_round as gr
+import get_sheet as gs
+
+
 
 
 
 
 def value():
-    sheet_id = "1RzqqheHKMmwCbEM_gSTUep_S4hFu4ILMz__o0tjYPF0"
-    sheet_name = "FEBRUARY-2023"
-    url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
-    col_names = ["turns", "celine", "chocolat", "fergus", "lenny", "lednas"]
-    col_nums = [0,1,3,5,7,9]
-
-    df = pd.read_csv(url, usecols= col_nums, names = col_names, skiprows=1)
-    turns = range(1,df.count()['turns']+1)
-    df['turns'] = turns
-    df = df.fillna(0)
-    df
-    current = get_round.current('round')
-    
     
     under = []
     fair = []
     over = []
     table = '```ansi\n╔══════════╦══════════╦══════════╗\n║' + ('Good').center(10) + '║' + ('Fair').center(10) + '║' + ('Bad').center(10) + '║\n╠══════════╬══════════╬══════════╣\n'
 
-    for i in col_names[1:]:
+    for i in ['celine', 'chocolat', 'fergus', 'lenny', 'lednas']:
         flag = valfind(i)
         if flag == 0:
             under.append(i.capitalize())
@@ -55,24 +42,17 @@ def value():
 
 
 def valfind(character):
-    sheet_id = "1RzqqheHKMmwCbEM_gSTUep_S4hFu4ILMz__o0tjYPF0"
-    sheet_name = "AUGUST-2022"
-    url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
-    col_names = ["turns", "celine", "chocolat", "fergus", "lenny", "lednas"]
-    col_nums = [0,1,3,5,7,9]
+    # Get sheet data
+    df = gs.sheet()
 
-    df = pd.read_csv(url, usecols= col_nums, names = col_names, skiprows=1)
-    turns = range(1,df.count()['turns']+1)
-    df['turns'] = turns
-    df = df.fillna(0)
-    df
+    # Get current round
+    cr = gr.round()
 
-    current = get_round.current('round')
-    chlist = df[character][current-7:current]
+    chlist = df[character][cr-7:cr]
         
     avg = chlist.mean()
     stdev = chlist.std()
-    currentpr = get_round.current(character)
+    currentpr = df[character][cr]
     if (currentpr < (int(avg) - int(stdev))):
         return 0
 

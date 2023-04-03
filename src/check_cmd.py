@@ -1,32 +1,26 @@
 
-
 import get_round as gr
 import get_sheet as gs
 
 
-# Backend for ;suggest
-def suggestion_func():
-    
+
+def prcheck(hour):
+
     # Get sheet data
     df = gs.sheet()
 
     # Get current round
     cr = gr.round()
-    
-    # Initialize variables
+
     topgrowth = 0
-    topchar = ""
-    tipflag = False
+    topchar = ''
 
     for i in ["celine", "chocolat", "fergus", "lenny", "lednas"]:
-        if df[i][cr]:
-            growth = round((((df[i][cr+1] - df[i][cr]) / df[i][cr]) * 100), 2)
-        else:
-            return "priceerror", 0
+        growth = round((((df[i][cr+int(hour)] - df[i][cr]) / df[i][cr]) * 100), 2)
         if growth > topgrowth:
             topgrowth = growth
             topchar = i
-        if df[i][cr+1]:
+        if df[i][cr+int(hour)]:
             tipflag = True
 
     if tipflag and (topgrowth < 0):
@@ -35,28 +29,30 @@ def suggestion_func():
         return "tiperror", 0
     else:
         return topchar, topgrowth
-    
 
 
-    
 
 # Frontend for ;suggest
-def suggestion_cmd_output():
-    flag, growth = suggestion_func()
+def check_output(hour):
+    flag, growth = prcheck(hour)
     match flag:
-        case "priceerror":
-            return(
-                "> Prices for the current round have not been added yet! Please contact an editor."
-            )
+
         case "tiperror":
             return(
                 "> There are no tips for the next round."
             )
+        
         case "decreaseerror":
             return(
-                "> All characters with tips will decrease next round."
+                f"> All characters with tips will decrease in {hour} rounds."
             )
+        
         case _:
             return(
-                f"> {flag.capitalize()} will have the highest growth of {growth}% this round."
+                f"> {flag.capitalize()} will have the highest growth of {growth}% in {hour} rounds."
             )
+
+
+
+
+

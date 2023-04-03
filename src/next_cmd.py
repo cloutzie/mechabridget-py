@@ -13,7 +13,7 @@ def next(rounds, character):
     cr = gr.round()
 
     # Initialize variables
-    all_rounds = df[character][cr:cr+(int(rounds) -1)]
+    all_rounds = df[character][cr-2:cr+(int(rounds)-1)]
     growth = ''
     turn = ''
     num = ''
@@ -23,7 +23,7 @@ def next(rounds, character):
     for r in all_rounds.index[1:]: 
         
 
-        if all_rounds[r] != 0:
+        if all_rounds[r]:
             growth = round(((all_rounds[r] / all_rounds[r-1] - 1) * 100), 2)
             if growth > 0:
                 form = '\u001b[0;32m'
@@ -46,7 +46,7 @@ def next(rounds, character):
         
         
         
-        turn = str('Turn ' + str(r+1))
+        turn = f"Turn {r}"
         table += '║' + str(turn).center(10) + '║' + str(num).center(10) + '║' + form + str(growth).center(10) + '\u001b[0m' + '║ \n╠══════════╬══════════╬══════════╣\n'
 
     table = table[:-35] + '╚══════════╩══════════╩══════════╝\n```'
