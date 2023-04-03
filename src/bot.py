@@ -7,15 +7,15 @@
 
 
 import discord
+from discord.ext import commands
 from dotenv import load_dotenv
 import os
-from discord.ext import commands
 
+import counter
 import get_round
 import last_cmd
 import next_cmd
 import suggestion_cmd
-
 
 load_dotenv()
   
@@ -31,43 +31,31 @@ async def on_ready():
 
 
 
-
-
 # Commands
 #---------------------------------------------------------------------------
-
-
 
 
 
 # Current Round Number | ;round
 @bot.command(aliases=['r', 'rnd'])
 async def round(ctx):
+
+    # Counter for ;round
+    counter.addr(';round')
+
     await ctx.send(
         get_round.roundstr()
     )
-
-
-
-
-
-# Price History Table | ;last <number of rounds> <character>
-@bot.command(aliases=['l'])
-async def last(ctx, rounds, char):
-    await ctx.send(
-        get_round.roundstr()
-    )
-    await ctx.send(
-        last_cmd.last(rounds, char.lower())
-    )
-
-
 
 
 
 # Price Future Table | ;next <number of rounds> <character>
 @bot.command(aliases=['n'])
 async def next(ctx, rounds, char):
+
+    # Counter for ;next
+    counter.addr(';next')
+    
     await ctx.send(
         get_round.roundstr()
     )
@@ -77,11 +65,29 @@ async def next(ctx, rounds, char):
 
 
 
+# Price History Table | ;last <number of rounds> <character>
+@bot.command(aliases=['l'])
+async def last(ctx, rounds, char):
+
+    # Counter for ;last
+    counter.addr(';last')
+
+    await ctx.send(
+        get_round.roundstr()
+    )
+    await ctx.send(
+        last_cmd.last(rounds, char.lower())
+    )
+
 
 
 # Purchase Suggestions for Current Round | ;suggest
 @bot.command(aliases=['sg'])
 async def suggest(ctx):
+
+    # Counter for ;suggest
+    counter.addr(';suggest')
+
     await ctx.send(
         get_round.roundstr()
     )
