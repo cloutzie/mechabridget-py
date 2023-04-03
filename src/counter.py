@@ -32,4 +32,4 @@ def display():
     return string
 
 
-# resetcounter()
+resetcounter()

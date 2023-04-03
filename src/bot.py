@@ -163,8 +163,8 @@ async def last(ctx, rounds, char):
 
 
 # Purchase Suggestions for Current Round | ;suggest
-@bot.command(aliases=['sg','bb'], description="Purchase suggestion for the current round.")
-async def suggest(ctx):
+@bot.command(aliases=['bb'], description="Purchase suggestion for the current round.")
+async def bestbuy(ctx):
 
     # Counter for ;suggest
     counter.addr(';suggest')
@@ -196,6 +196,7 @@ async def ema(ctx, character):
     os.remove(character+'.png')
 
 
+
 # Cloutzie only command to display runcounts of each command
 @bot.command(description="Only for Clout")
 async def statistics(ctx):
@@ -220,22 +221,6 @@ class MyHelpCommand(commands.HelpCommand):
                 
             channel = self.get_destination()  # this method is inherited from `HelpCommand`, and gets the channel in context
             await channel.send(embed=embed)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
