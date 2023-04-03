@@ -1,6 +1,6 @@
 {
     ";round": {
-        "runs": 1
+        "runs": 2
     },
     ";tips": {
         "runs": 0
@@ -9,10 +9,10 @@
         "runs": 0
     },
     ";check": {
-        "runs": 4
+        "runs": 1
     },
     ";next": {
-        "runs": 0
+        "runs": 1
     },
     ";last": {
         "runs": 0

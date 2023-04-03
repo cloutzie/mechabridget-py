@@ -42,13 +42,13 @@ async def on_ready():
 # Reset Bot
 @bot.command(pass_context=True, description="Provide this command with a UNIX Timestamp and the proper sheet name when a new event starts. Admins only")
 @commands.has_permissions(administrator=True)
-async def resetbot(ctx, unix_timestamp, sheet_name):
+async def resetthebot(ctx, unix_timestamp, sheet_name):
     resetbot.resetrr(unix_timestamp, sheet_name)
     await ctx.send(
         f"> Event start has been set to <t:{unix_timestamp}>"
     )
     await ctx.send(
-        f"> Sheet has been set to {sheet_name}>"
+        f"> Sheet has been set to {sheet_name}"
     )
 
 
