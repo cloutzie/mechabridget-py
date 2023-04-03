@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import current_func
+import get_round
 import discord
 import tips_func
 
@@ -17,7 +17,7 @@ def prcheck(hour):
     df['turns'] = turns
     df = df.fillna(0)
     df
-    current = current_func.current('round')
+    current = get_round.current('round')
 
 
     hours = int(hour)+1

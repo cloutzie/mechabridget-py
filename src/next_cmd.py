@@ -1,30 +1,25 @@
 
-import pandas as pd
-import current_func
-
-
-
+import get_round as gr
+import get_sheet as gs
 
 
 
 def next(rounds, character):
-    sheet_id = "1RzqqheHKMmwCbEM_gSTUep_S4hFu4ILMz__o0tjYPF0"
-    sheet_name = "FEBRUARY-2023"
-    url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
-    col_names = ["turns", "celine", "chocolat", "fergus", "lenny", "lednas"]
-    col_nums = [0,1,3,5,7,9]
+    
+    # Get sheet data
+    df = gs.sheet()
 
-    df = pd.read_csv(url, usecols= col_nums, names = col_names, skiprows=1)
-    turns = range(1,df.count()['turns']+1)
-    df['turns'] = turns
-    df = df.fillna(0)
-    df
-    current = current_func.current('round')
-    all_rounds = df[character][current-2:current+(int(rounds) -1)]
+    # Get current round
+    cr = gr.round()
+
+    # Initialize variables
+    all_rounds = df[character][cr:cr+(int(rounds) -1)]
     growth = ''
     turn = ''
     num = ''
     table = '```ansi\n╔══════════╦══════════╦══════════╗\n║' + ('Turn #').center(10) + '║' + ('Price').center(10) + '║' + ('Growth').center(10) + '║\n╠══════════╬══════════╬══════════╣\n'
+
+    # Comment later maybe
     for r in all_rounds.index[1:]: 
         
 

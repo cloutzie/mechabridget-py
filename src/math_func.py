@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import current_func
+import get_round
 import discord
 
 
@@ -14,10 +14,10 @@ def math(function, character, rounds):
     df = pd.read_csv(url, usecols= col_nums, names = col_names, skiprows=1)
     turns = range(1,df.count()['turns']+1)
     df['turns'] = turns
-    df = df.dropna()[df['turns'] <= current_func.current('round')]
+    df = df.dropna()[df['turns'] <= get_round.current('round')]
     df
 
-    current = current_func.current('round')
+    current = get_round.current('round')
 
     if function in ['average', 'avg', 'mean']:
         if rounds in ['all', 'max']:

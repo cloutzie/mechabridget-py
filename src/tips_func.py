@@ -1,5 +1,5 @@
 import pandas as pd
-import current_func
+import get_round
 
 
 
@@ -18,7 +18,7 @@ def tips(character):
 
     df
 
-    current = int(current_func.current('round'))
+    current = int(get_round.current('round'))
     df[character].fillna(0, inplace = True)
     num = 0
     rounds = 0

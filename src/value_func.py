@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import current_func
+import get_round
 import discord
 import tips_func
 
@@ -19,7 +19,7 @@ def value():
     df['turns'] = turns
     df = df.fillna(0)
     df
-    current = current_func.current('round')
+    current = get_round.current('round')
     
     
     under = []
@@ -67,12 +67,12 @@ def valfind(character):
     df = df.fillna(0)
     df
 
-    current = current_func.current('round')
+    current = get_round.current('round')
     chlist = df[character][current-7:current]
         
     avg = chlist.mean()
     stdev = chlist.std()
-    currentpr = current_func.current(character)
+    currentpr = get_round.current(character)
     if (currentpr < (int(avg) - int(stdev))):
         return 0
 
