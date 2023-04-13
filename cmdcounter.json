@@ -3,24 +3,24 @@
         "runs": 2
     },
     ";tips": {
-        "runs": 0
+        "runs": 5
     },
     ";value": {
-        "runs": 0
+        "runs": 12
     },
     ";check": {
-        "runs": 1
+        "runs": 2
     },
     ";next": {
-        "runs": 1
+        "runs": 3
     },
     ";last": {
         "runs": 0
     },
     ";suggest": {
-        "runs": 0
+        "runs": 10
     },
     ";ema": {
-        "runs": 0
+        "runs": 3
     }
 }

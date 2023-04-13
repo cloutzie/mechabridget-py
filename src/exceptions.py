@@ -12,7 +12,7 @@ def currentcheck():
 
     for i in ["celine", "chocolat", "fergus", "lenny", "lednas"]:
 
-        if not df[i][cr]:
+        if df[i][cr] == 0:
             return 1
         else:
             return 0

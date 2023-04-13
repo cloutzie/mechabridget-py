@@ -14,7 +14,7 @@ def prcheck(hour):
 
     topgrowth = 0
     topchar = ''
-
+    tipflag = False
     for i in ["celine", "chocolat", "fergus", "lenny", "lednas"]:
         growth = round((((df[i][cr+int(hour)] - df[i][cr]) / df[i][cr]) * 100), 2)
         if growth > topgrowth:
@@ -52,7 +52,7 @@ def check_output(hour):
         
         case _:
             return(
-                f"> {flag.capitalize()} will have the highest growth of {growth}% by round {hour+cr}"
+                f"> {flag.capitalize()} will have the highest growth of {growth}% by round {int(hour)+(cr)}"
             )
 
 

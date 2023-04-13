@@ -85,6 +85,9 @@ async def tips(ctx, character):
         )
     else:
         await ctx.send(
+            get_round.roundstr()
+        )
+        await ctx.send(
             tips_cmd.tips_output(character)
         )
 

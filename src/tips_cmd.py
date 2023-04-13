@@ -34,7 +34,7 @@ def tips_output(character):
     def tipstr(ch):
 
         num, rounds = tips(ch.lower())
-        growth = round((((df[ch][cr+1] - df[ch][cr]) / df[ch][cr]) * 100), 2)
+        growth = round((((df[ch][int(rounds)] - df[ch][cr]) / df[ch][cr]) * 100), 2)
 
         string = ""
         if num:
