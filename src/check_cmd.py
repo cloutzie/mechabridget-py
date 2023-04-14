@@ -23,7 +23,7 @@ def prcheck(hour):
         if df[i][cr+int(hour)]:
             tipflag = True
 
-    if tipflag and (topgrowth < 0):
+    if tipflag and (topgrowth <= 0):
         return "decreaseerror", 0
     elif not tipflag:
         return "tiperror", 0
@@ -42,7 +42,7 @@ def check_output(hour):
 
         case "tiperror":
             return(
-                "> There are no tips for the next round."
+                f"> There are no tips for round {int(hour)+(cr)}"
             )
         
         case "decreaseerror":
